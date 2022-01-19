@@ -18,8 +18,21 @@ const galleryCard = ({ preview, original, description }) => {
   </a>
 </div>
 `;
-    return wrapperGallery;
+    return wrapperGallery.children[0];
 };
 
 const galleryCards = galleryItems.map(galleryItem => galleryCard(galleryItem));
 galleryListRef.append(...galleryCards);
+
+// отмена ссылки
+galleryCards.forEach(galleryItem => {
+    const noLink = galleryItem.querySelector('[src]');
+
+    noLink.addEventListener('click', event => {
+        event.stopPropagation();
+        event.preventDefault();
+        console.log('clicked');
+    });
+});
+
+// модальное окно
