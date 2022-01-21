@@ -3,36 +3,47 @@ import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
 const galleryListRef = document.querySelector('.gallery');
+galleryListRef.addEventListener('click', onOpenModal);
 
-const galleryCard = ({ preview, original, description }) => {
-    const wrapperGallery = document.createElement('div');
-    wrapperGallery.innerHTML = `
-<div class="gallery__item">
-  <a class="gallery__link" href="${original}">
-    <img
-      class="gallery__image"
-      src="${preview}"
-      data-source="${original}"
-      alt="${description}"
-    />
-  </a>
-</div>
-`;
-    return wrapperGallery.children[0];
-};
+const galleryMark = creatGalleryMark(galleryItems);
+galleryListRef.insertAdjacentHTML('beforeend', galleryMark);
 
-const galleryCards = galleryItems.map(galleryItem => galleryCard(galleryItem));
-galleryListRef.append(...galleryCards);
+function creatGalleryMark(items) {
+    return items
+        .map(({ preview, original, description }) => {
+            return `
+  <div class="gallery__item">
+    <a class="gallery__link" href="${original}">
+      <img
+        class="gallery__image"
+        src="${preview}"
+        data-source="${original}"
+        alt="${description}"
+      />
+    </a>
+  </div>
+  `;
+        })
+        .join('');
+}
 
-// отмена ссылки
-galleryCards.forEach(galleryItem => {
-    const noLink = galleryItem.querySelector('[src]');
+function onOpenModal(event) {
+    event.preventDefault();
 
-    noLink.addEventListener('click', event => {
-        event.stopPropagation();
-        event.preventDefault();
-        console.log('clicked');
-    });
-});
+    const item = event.target.dataset.source;
+    const instance = basicLightbox.create(`<img src = '${item}'>`);
 
-// модальное окно
+    instance.show();
+}
+
+// window.addEventListener('keydown', onEscPress);
+
+// function onEscPress(event) {
+//     console.log(event);
+//     instance.close(onFooTest);
+// }
+
+// onFooTest.onClose: instance => {
+//     window.addEventListener('keydown', onEscPress);
+//     console.log();
+// };
