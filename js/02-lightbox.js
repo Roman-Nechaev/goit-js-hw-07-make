@@ -26,8 +26,6 @@ function creatGalleryMark(items) {
         .join('');
 }
 
-
-
 function onOpenModal(event) {
     event.preventDefault();
    
