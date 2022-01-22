@@ -35,15 +35,3 @@ function onOpenModal(event) {
 
     instance.show();
 }
-
-// window.addEventListener('keydown', onEscPress);
-
-// function onEscPress(event) {
-//     console.log(event);
-//     instance.close(onFooTest);
-// }
-
-// onFooTest.onClose: instance => {
-//     window.addEventListener('keydown', onEscPress);
-//     console.log();
-// };
