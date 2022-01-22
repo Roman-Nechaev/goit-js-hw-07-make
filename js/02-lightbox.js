@@ -6,30 +6,38 @@ import { galleryItems } from './gallery-items.js';
 const galleryListRef = document.querySelector('.gallery');
 galleryListRef.addEventListener('click', onOpenModal);
 
-const galleryMark = creatGalleryMark(galleryItems);
-galleryListRef.insertAdjacentHTML('beforeend', galleryMark);
+const galleryItem = creatGalleryMark(galleryItems);
+galleryListRef.insertAdjacentHTML('beforeend', galleryItem);
 
 function creatGalleryMark(items) {
     return items
         .map(({ preview, original, description }) => {
             return `
-            <a class="gallery__item" 
+            <div class="gallery">
+            <a  class="gallery__item" 
             href="${original}">
             <img class="gallery__image"
             src="${preview}"
             alt="${description}" />
           </a>
+          </div>
   `;
         })
         .join('');
 }
 
-var lightbox = new SimpleLightbox('.gallery a', {});
 
-// var lightbox = new SimpleLightbox('.gallery a', {});
+
+
+
 
 function onOpenModal(event) {
     event.preventDefault();
-    // var event = $('.gallery a').simpleLightbox(link.alt);
-    // var gallery = $('.gallery a').simpleLightbox();
+   
 }
+
+var onGallerySlider = new SimpleLightbox('.gallery a', {
+    captionsData: `alt`,
+    captionDelay: `250`,
+
+});
