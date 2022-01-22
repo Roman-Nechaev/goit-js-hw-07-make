@@ -28,9 +28,6 @@ function creatGalleryMark(items) {
 
 
 
-
-
-
 function onOpenModal(event) {
     event.preventDefault();
    
