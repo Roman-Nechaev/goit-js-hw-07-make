@@ -5,10 +5,6 @@ import { galleryItems } from './gallery-items.js';
 const galleryListRef = document.querySelector('.gallery');
 galleryListRef.addEventListener('click', onOpenModal);
 
-window.addEventListener('keydown', onCloseModal); 
-   // Закрытие модалки 
-
-
 const galleryMark = creatGalleryMark(galleryItems);
 galleryListRef.insertAdjacentHTML('beforeend', galleryMark);
 
@@ -37,20 +33,5 @@ function onOpenModal(event) {
     const item = event.target.dataset.source;
     const instance = basicLightbox.create(`<img src = '${item}'>`);
 
-  instance.show()
-  
-}
-
-
-
-
-function onCloseModal(event) {
-    
-
-    // const item = event.target.dataset.source;
-    // const instance = basicLightbox.create(`<img src = '${item}'>`);
-
-  instance.close()
-
-  console.log(event.code);
+    instance.show();
 }
